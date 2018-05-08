@@ -1,5 +1,5 @@
-# DroidCurr - ImCurr for Android
-An absolutely free tool to encrypt/decrypt files
+# ImCurr Android Edition
+An absolutely free tool to encrypt/decrypt files for Android devices
 
 ### Relevant version (5.05.2018): 1.0 BETA
 
