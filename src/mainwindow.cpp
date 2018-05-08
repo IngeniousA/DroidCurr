@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "androidfiledialog.h"
 #include "blowfish.h"
+#include "imagepickerandroid.h"
 #include <QFileDialog>
 #include <fstream>
 #include <string>
@@ -84,7 +85,7 @@ void MainWindow::unpack(char sr[], char des[], char size[], char k[], long skip)
 {
     strV key;
     key.resize(0);
-    for (int i = 0; i < strlen(k); i++)
+    for (uint i = 0; i < strlen(k); i++)
         key.push_back(k[i]);
     long sizel = atol(size);
     ifstream  src(sr, ios::binary);
@@ -96,7 +97,7 @@ void MainWindow::unpack(char sr[], char des[], char size[], char k[], long skip)
         text[i] = src.get();
     Blowfish bf(key);
     text = bf.Decrypt(text);
-    for (int i = 0; i < text.size(); i++)
+    for (uint i = 0; i < text.size(); i++)
         dst.put(text[i]);
     dst.close();
     src.close();
@@ -230,7 +231,8 @@ void MainWindow::on_openFileBtn_clicked()
 
 void MainWindow::openFile(QString name)
 {
-    if (!name.isNull())
+    qDebug() << "NICE";
+    if (!name.isNull() && name != "-1")
     {
         QFile *f = new QFile(name);
         src = name.toStdString();
@@ -278,9 +280,14 @@ void MainWindow::openFile(QString name)
             break;
         }
     }
-    else
+    else if (name != "-1")
     {
         log("Action cancelled.");
+    }
+    else
+    {
+        log("Could not select file.");
+        log("Please use external app from left menu while choosing file.");
     }
 }
 
@@ -293,7 +300,7 @@ void MainWindow::on_infoBtn_clicked()
 {
     log("--------INFO--------");
     log("ImCurr Android Edition");
-    log("ver. 1.0 BETA build 1");
+    log("ver. 1.0 BETA build 2");
     log("Made by Ingenious");
     log("github.com/IngeniousA");
     log("--------------------");

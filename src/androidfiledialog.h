@@ -2,9 +2,11 @@
 #define ANDROIDFILEDIALOG_H
 
 #include <QObject>
-#include <QtAndroidExtras/QAndroidJniObject>
-#include <QtAndroidExtras/QtAndroid>
-#include <QtAndroidExtras/QAndroidActivityResultReceiver>
+#include <QAndroidJniObject>
+#include <QtAndroid>
+#include <QAndroidActivityResultReceiver>
+#include <QDebug>
+#include <QAndroidJniEnvironment>
 
 class AndroidFileDialog : public QObject
 {
